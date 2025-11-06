@@ -1,39 +1,38 @@
 import { useState } from 'react';
-import { Table, Checkbox } from '@mantine/core';
+import { Table, Checkbox, Pill } from '@mantine/core';
 
 const elements = [
-    { position: 6, mass: 12.011, symbol: 'C', name: 'Carbon' },
-    { position: 7, mass: 14.007, symbol: 'N', name: 'Nitrogen' },
-    { position: 39, mass: 88.906, symbol: 'Y', name: 'Yttrium' },
-    { position: 56, mass: 137.33, symbol: 'Ba', name: 'Barium' },
-    { position: 58, mass: 140.12, symbol: 'Ce', name: 'Cerium' },
+    { name: 'Project APPLE', modified: Date.now(), owner: 'JA', sharing: 'Private' },
+    { name: 'Project BANANA', modified: Date.now(), owner: 'JA', sharing: 'Private' },
+    { name: 'Project ORANGE', modified: Date.now(), owner: 'AR', sharing: 'Private' },
+    { name: 'Project GRAPE', modified: Date.now(), owner: 'WL', sharing: 'Private' },
 ];
 
 export function ProjectsTable() {
-    const [selectedRows, setSelectedRows] = useState<number[]>([]);
+    const [selectedRows, setSelectedRows] = useState<string[]>([]);
 
     const rows = elements.map((element) => (
         <Table.Tr
             key={element.name}
-            bg={selectedRows.includes(element.position) ? 'var(--mantine-color-blue-light)' : undefined}
+            bg={selectedRows.includes(element.name) ? 'var(--mantine-color-blue-light)' : undefined}
         >
             <Table.Td>
                 <Checkbox
                     aria-label="Select row"
-                    checked={selectedRows.includes(element.position)}
+                    checked={selectedRows.includes(element.name)}
                     onChange={(event) =>
                         setSelectedRows(
                             event.currentTarget.checked
-                                ? [...selectedRows, element.position]
-                                : selectedRows.filter((position) => position !== element.position)
+                                ? [...selectedRows, element.name]
+                                : selectedRows.filter((name) => name !== element.name)
                         )
                     }
                 />
             </Table.Td>
-            <Table.Td>{element.position}</Table.Td>
             <Table.Td>{element.name}</Table.Td>
-            <Table.Td>{element.symbol}</Table.Td>
-            <Table.Td>{element.mass}</Table.Td>
+            <Table.Td>{new Date(element.modified).toString()}</Table.Td>
+            <Table.Td><Pill>{element.owner}</Pill></Table.Td>
+            <Table.Td>{element.sharing}</Table.Td>
         </Table.Tr>
     ));
 
@@ -42,10 +41,10 @@ export function ProjectsTable() {
             <Table.Thead>
                 <Table.Tr>
                     <Table.Th />
-                    <Table.Th>Element position</Table.Th>
-                    <Table.Th>Element name</Table.Th>
-                    <Table.Th>Symbol</Table.Th>
-                    <Table.Th>Atomic mass</Table.Th>
+                    <Table.Th>Name</Table.Th>
+                    <Table.Th>Modified</Table.Th>
+                    <Table.Th>Owner</Table.Th>
+                    <Table.Th>Sharing</Table.Th>
                 </Table.Tr>
             </Table.Thead>
             <Table.Tbody>{rows}</Table.Tbody>
