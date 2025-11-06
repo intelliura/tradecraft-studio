@@ -1,4 +1,5 @@
 import { AppShell, Autocomplete, Badge, Burger, Button, Flex, Group, Menu, NavLink, Text } from '@mantine/core';
+import { notifications } from '@mantine/notifications';
 import { useDisclosure } from '@mantine/hooks';
 import { 
   IconHome2, 
@@ -62,7 +63,15 @@ export function HomePage() {
               <Menu.Item leftSection={<IconSettings size={14} />}>
                 Settings
               </Menu.Item>
-              <Menu.Item leftSection={<IconMessageCircle size={14} />}>
+              <Menu.Item 
+                leftSection={<IconMessageCircle size={14} />}
+                onClick={() =>
+                  notifications.show({
+                    title: 'Default notification',
+                    message: 'Do not forget to star Mantine on GitHub! 🌟',
+                  })
+                }
+              >
                 Messages
               </Menu.Item>
               <Menu.Item leftSection={<IconPhoto size={14} />}>
