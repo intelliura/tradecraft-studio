@@ -14,6 +14,8 @@ import {
   IconArrowsLeftRight,
 } from '@tabler/icons-react';
 
+import { ProjectsTable } from '@/components/ProjectsTable/ProjectsTable';
+
 export function HomePage() {
   const [opened, { toggle }] = useDisclosure();
 
@@ -157,7 +159,9 @@ export function HomePage() {
         />
       </AppShell.Navbar>
 
-      <AppShell.Main>Main content window goes here</AppShell.Main>
+      <AppShell.Main>
+        <ProjectsTable />
+      </AppShell.Main>
     </AppShell>
   );
 }
