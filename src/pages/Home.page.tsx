@@ -1,6 +1,18 @@
-import { AppShell, Badge, Burger, Flex, Group, NavLink, Text } from '@mantine/core';
+import { AppShell, Autocomplete, Badge, Burger, Button, Flex, Group, Menu, NavLink, Text } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { IconHome2, IconGauge, IconChevronRight, IconActivity, IconCircleOff } from '@tabler/icons-react';
+import { 
+  IconHome2, 
+  IconGauge, 
+  IconChevronRight, 
+  IconActivity, 
+  IconCircleOff,
+  IconSettings,
+  IconSearch,
+  IconPhoto,
+  IconMessageCircle,
+  IconTrash,
+  IconArrowsLeftRight,
+} from '@tabler/icons-react';
 
 export function HomePage() {
   const [opened, { toggle }] = useDisclosure();
@@ -33,6 +45,52 @@ export function HomePage() {
             />
             <Text>Tradecraft Studio</Text>
           </Group>
+          <Autocomplete
+            placeholder="Search"
+            data={['Project APPLE', 'Project BANANA', 'Project ORANGE', 'Project GRAPE']}
+          />
+          <Menu position="bottom-end" shadow="md" width={200}>
+            <Menu.Target>
+              <Button>Account</Button>
+            </Menu.Target>
+            <Menu.Dropdown>
+              <Menu.Label>Application</Menu.Label>
+              <Menu.Item leftSection={<IconSettings size={14} />}>
+                Settings
+              </Menu.Item>
+              <Menu.Item leftSection={<IconMessageCircle size={14} />}>
+                Messages
+              </Menu.Item>
+              <Menu.Item leftSection={<IconPhoto size={14} />}>
+                Gallery
+              </Menu.Item>
+              <Menu.Item
+                leftSection={<IconSearch size={14} />}
+                rightSection={
+                  <Text size="xs" c="dimmed">
+                    ⌘K
+                  </Text>
+                }
+              >
+                Search
+              </Menu.Item>
+
+              <Menu.Divider />
+
+              <Menu.Label>Danger zone</Menu.Label>
+              <Menu.Item
+                leftSection={<IconArrowsLeftRight size={14} />}
+              >
+                Transfer my data
+              </Menu.Item>
+              <Menu.Item
+                color="red"
+                leftSection={<IconTrash size={14} />}
+              >
+                Delete my account
+              </Menu.Item>
+            </Menu.Dropdown>
+          </Menu>
         </Flex>
       </AppShell.Header>
 
@@ -97,7 +155,7 @@ export function HomePage() {
         />
       </AppShell.Navbar>
 
-      <AppShell.Main>Main</AppShell.Main>
+      <AppShell.Main>Main content window goes here</AppShell.Main>
     </AppShell>
   );
 }
