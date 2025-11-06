@@ -31,8 +31,9 @@ export function HomePage() {
         <Flex
           mih={60}
           pl="md"
+          pr="md"
           gap="md"
-          justify="flex-start"
+          justify="space-between"
           align="center"
           direction="row"
           wrap="wrap"
