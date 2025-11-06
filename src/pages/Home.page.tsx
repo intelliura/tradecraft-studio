@@ -48,6 +48,7 @@ export function HomePage() {
           </Group>
           <Autocomplete
             placeholder="Search"
+            miw={400}
             data={['Project APPLE', 'Project BANANA', 'Project ORANGE', 'Project GRAPE']}
           />
           <Menu position="bottom-end" shadow="md" width={200}>
